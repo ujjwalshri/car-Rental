@@ -1,0 +1,37 @@
+/* Set the background color of the body to a whitish subtle color */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    background-color: #faf6f6;
+    font-family: "Atkinson Hyperlegible Mono", serif;
+    
+}
+
+label{
+    font-family: "Atkinson Hyperlegible Mono", serif;
+
+}
+
+h1{
+    font-family: "Atkinson Hyperlegible Mono", serif;
+}
+/* Style the buttons */
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    font-family: "Atkinson Hyperlegible Mono", serif;
+}
+
+/* Style the button hover effect */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Add more CSS rules as needed for your website */
