@@ -1,0 +1,13 @@
+{
+  "name": "car-rental",
+  "version": "1.0.0",
+  "description": "#### Key Features 1. Superadmin Module User Management: Add, edit, delete, and view car owners and users. Approve or reject car owner registrations. Car Management: View, edit, or remove cars listed by car owners. Manage car categories and rental rates. Reports and Analytics: Generate reports on car rentals, revenue. View data dashboards with key metrics.",
+  "main": "index.js",
+  
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+ "type":"module",
+  "author": "",
+  "license": "ISC"
+}

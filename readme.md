@@ -24,7 +24,6 @@ Update profile details (e.g., name, contact info, and payment preferences).
 Car Management:
 Add, edit, or remove cars.
 Provide details such as car model, category, rental price, availability, images, and features.
-
 #### Booking Management:
 View and manage bookings.
 Approve or reject booking requests.

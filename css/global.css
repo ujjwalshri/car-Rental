@@ -35,3 +35,26 @@ button:hover {
 }
 
 /* Add more CSS rules as needed for your website */
+
+.navbar {
+    background-color: #4CAF50;  /* Green theme */
+    display: flex;
+    margin-right: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Atkinson Hyperlegible", sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+    cursor: pointer;
+}

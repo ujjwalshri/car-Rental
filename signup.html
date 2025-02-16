@@ -1,35 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/auth/signup.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/auth/signup.css" />
+  </head>
+  <body>
     <form id="userForm">
-       <h1>Sign up</h1>
-        <label>Username:</label>
-        <input type="text" id="username" name="username" required>
+      <h1>Sign up</h1>
 
-        <label>Password:</label>
-        <input type="password" id="password" name="password" required>
+      <label>Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="enter your username"
+        required
+      />
 
-        <label>Email:</label>
-        <input type="email" id="email" name="email" required>
+      <label>Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="enter a password"
+      />
+      <label>confirm password:</label>
+      <input
+        type="password"
+        id="confirm-password"
+        name="password"
+        placeholder="verify your password"
+        required
+      />
 
-        <label>User Role:</label>
-        <input type="text" id="userRole" name="userRole" required>
+      <label>Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="enter your email"
+        required
+      />
 
-        <label>City:</label>
-        <input type="text" id="city" name="city" required>
-
-        <label>Adhaar Number:</label>
-        <input type="number" id="adhaar" name="adhaar" required>
-
-        <button type="submit">Submit</button>
+      <label for="userRole">User Role:</label>
+      <select id="userRole" name="userRole" required>
+        <option value="">Select user role</option>
+        <option value="seller">Seller</option>
+        <option value="buyer">Buyer</option>
+      </select>
+      <label>City:</label>
+      <input type="text" id="city" name="city" placeholder="please enter your city"  required/>
+      <label>Adhaar Number:</label>
+      <input type="number" id="adhaar" name="adhaar" placeholder="adhar number" required />
+      <span id="login-href"
+        >Already a user?? <a href="/pages/auth/login.html">login</a></span
+      >
+      <button id="submit-button" type="submit">Submit</button>
     </form>
-</body>
+
+
+
+    <script type="module" src="/js/database/db.js"></script>
+    <script type="module" src="/js/auth/signup.js"></script>
+    <script type="module" src="/js/utils/validations.js"></script>
+  </body>
 </html>

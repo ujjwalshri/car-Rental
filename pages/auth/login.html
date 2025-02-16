@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/auth/signup.css">
+</head>
+<body>
+    
+    <form action="/login"  id="userForm" method="POST">
+        <h1>Login Form</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="enter a valid username" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="enter your password" required><br><br>
+        
+        <button id="submit-button" type="submit-button">Submit</button>
+    </form>
+
+
+    <script type="module" src="/js/auth/login.js"></script>
+    <script type="module" src="/js/database/db.js"></script>
+</body>
+</html>
