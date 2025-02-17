@@ -9,17 +9,34 @@
 </head>
 <body>
     
-    <div class="navbar">
-        <h1 id="home-button">home</h1>
-        <h1 id="browse-cars">browse All Cars</h1>
-        <div class="nav-div">
-            <h1 id="profile-btn">profile</h1>
-            <button id="logout-button">logout</button>
-        </div>
-        
+   <!-- Navbar -->
+   <nav class="navbar">
+    <a href="#" class="logo">Car-lelo.com</a>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <!-- Dropdown -->
+        <li class="dropdown">
+            <a href="#">More ▾</a>
+            <ul class="dropdown-menu">
+                <li id="profile"><a href="#">Profile</a></li>
+                <li id="updateProfile"><a href="#">updateProfile</a></li>
+                <li id="dynamic"></li>
+                <li id="chats"><a href="#">chats</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- Search Bar -->
+    <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <button>🔍</button>
     </div>
-
-
+  
+    <!-- Login Button -->
+    <a  href="/pages/auth/login.html" class="login-btn">Login</a>
+</nav>
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
             <h2>User Details</h2>
@@ -34,6 +51,6 @@
         </div>
     </div>
     <script type="module" src="/js/home/home.js"></script>
-    <script type="module" src="/js/utils/helper.js"></script>
+    <script type="module" src="/js/database/db.js"></script>
 </body>
 </html>

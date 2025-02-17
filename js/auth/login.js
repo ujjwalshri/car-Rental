@@ -2,7 +2,6 @@
 if(sessionStorage.getItem("user")){
     window.location.href = "../home/home.html";
 }
-
 // importing the loginUser function from the db.js file
 import { loginUser } from '../database/db.js';
 

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/car/addCar.css">
+</head>
+<body>
+     <!-- Navbar -->
+     <nav class="navbar">
+        <a href="/pages/home/home.html" class="logo">Car-lelo.com</a>
+    
+        <!-- Navigation Links -->
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <!-- Dropdown -->
+            <li class="dropdown">
+                <a href="#">More ▾</a>
+                <ul class="dropdown-menu">
+                    <li id="profile"><a href="#">Profile</a></li>
+                    <li id="updateProfile"><a href="#">updateProfile</a></li>
+                    <li id="dynamic"></li>
+                    <li id="chats"><a href="#">chats</a></li>
+                </ul>
+            </li>
+        </ul>
+    
+        <!-- Search Bar -->
+        <div class="search-box">
+            <input type="text" placeholder="Search...">
+            <button>🔍</button>
+        </div>
+      
+        <!-- Login Button -->
+        <a href="/pages/auth/login.html" class="login-btn">Login</a>
+    </nav>
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>User Details</h2>
+            <button id="close-sidebar">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <p><strong>Username:</strong> <span id="user-name"></span></p>
+            <p><strong>Email:</strong> <span id="user-email"></span></p>
+            <p><strong>Role:</strong> <span id="user-role"></span></p>
+            <p><strong>City:</strong> <span id="user-city"></span></p>
+            <p><strong>user-since:</strong> <span id="user-since"></span></p>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <h2>Add a New Car</h2>
+        <form id="addCarForm">
+            
+            <!-- Car Information -->
+            <div class="form-group">
+                <label for="car_no">Car Number:</label>
+                <input type="text" id="car_no" name="car_no" required>
+            </div>
+            <div class="form-group">
+                <label for="carType">Car Type:</label>
+                <select id="carType" name="carType" required>
+                    <option value="" disabled selected>Select Car Type</option>
+                    <option value="4-seater">4 Seater</option>
+                    <option value="6-seater">6 Seater</option>
+                    <option value="8-seater">8 Seater</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="carName">Car Name:</label>
+                <input type="text" id="carName" name="carName" required>
+            </div>
+            <div class="form-group">
+                <label for="carModel">Car Model year:</label>
+                <input type="text" id="carModel" name="carModel" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="SUV">SUV</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Truck">Truck</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Select Location Type</option>
+                    <option value="local">Local</option>
+                    <option value="outstation">Outstation</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="carPrice">Car Price per day:</label>
+                <input type="number" id="carPrice" name="carPrice" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mileage">Mileage (km):</label>
+                <input type="number" id="mileage" name="mileage" required>
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group">
+                <label for="images">Car Images:</label>
+                <input type="file" id="imageUpload" name="images" accept=".jpg, .jpeg, .png" multiple>
+            </div>
+            <div id="imagePreview"></div>
+
+        <!-- Multi-Select Checkboxes -->
+        <fieldset>
+            <legend>Select Car Features:</legend>
+            <label class="checkbox"><input type="checkbox" name="feature" value="GPS"> GPS Navigation</label>
+            <label class="checkbox"><input type="checkbox" name="feature" value="Sunroof"> Sunroof</label>
+            <label class="checkbox"><input type="checkbox" name="feature" value="Bluetooth"> Bluetooth Connectivity</label>
+            <label class="checkbox"><input type="checkbox" name="feature" value="Rear Camera"> Rear Camera</label>
+            <label class="checkbox"><input type="checkbox" name="feature" value="Heated Seats"> Heated Seats</label>
+        </fieldset>
+
+        
+            <!-- Submit Button -->
+            <button type="submit" id="addCar-btn">Add Car</button>
+
+        </form>
+    </div>
+    <script type="module" src="/js/car/car.js"></script>
+</body>
+</html>
