@@ -10,7 +10,7 @@ function openDatabase() {
 
         request.onsuccess = (event) => {
             db = event.target.result;
-            resolve();
+            resolve(db);
         };
 
         request.onupgradeneeded = (event) => {
@@ -25,21 +25,20 @@ function openDatabase() {
                 userObjectStore.createIndex("cityIndex", "city", { unique: false });
                 userObjectStore.createIndex("isBlockedIndex", "isBlocked", { unique: false });
             }
-            if(!db.objectStoreNames.contains("cars")){
-            // Create indexes for the car object store
-            const carObjectStore = db.createObjectStore("cars", { keyPath: "carId" });
-            carObjectStore.createIndex("carIDIndex", "carId", { unique: true });
-            carObjectStore.createIndex("ownerUsernameIndex", "owner.username", { unique: false });
-            carObjectStore.createIndex("carTypeIndex", "cartype", { unique: false });
-            carObjectStore.createIndex("carNameIndex", "carname", { unique: false });
-            carObjectStore.createIndex("carModelIndex", "carModel", { unique: false });
-            carObjectStore.createIndex("categoryIndex", "category", { unique: false });
-            carObjectStore.createIndex("locationIndex", "location", { unique: false });
-            carObjectStore.createIndex("carPriceIndex", "carPrice", { unique: false });
-            carObjectStore.createIndex("createdAtIndex", "createdAt", { unique: false });
-            carObjectStore.createIndex("isApprovedIndex", "isApproved", { unique: false });
-            carObjectStore.createIndex("deletedIndex", "deleted", { unique: false });
-            carObjectStore.createIndex("mileageIndex", "mileage", { unique: false });
+            if (!db.objectStoreNames.contains("cars")) {
+                const carObjectStore = db.createObjectStore("cars", { keyPath: "carId" });
+                carObjectStore.createIndex("carIDIndex", "carId", { unique: true });
+                carObjectStore.createIndex("ownerUsernameIndex", "owner.username", { unique: false });
+                carObjectStore.createIndex("carTypeIndex", "cartype", { unique: false });
+                carObjectStore.createIndex("carNameIndex", "carname", { unique: false });
+                carObjectStore.createIndex("carModelIndex", "carModel", { unique: false });
+                carObjectStore.createIndex("categoryIndex", "category", { unique: false });
+                carObjectStore.createIndex("locationIndex", "location", { unique: false });
+                carObjectStore.createIndex("carPriceIndex", "carPrice", { unique: false });
+                carObjectStore.createIndex("createdAtIndex", "createdAt", { unique: false });
+                carObjectStore.createIndex("isApprovedIndex", "isApproved", { unique: false });
+                carObjectStore.createIndex("deletedIndex", "deleted", { unique: false });
+                carObjectStore.createIndex("mileageIndex", "mileage", { unique: false });
             }
             if (!db.objectStoreNames.contains("bidding")) {
                 const biddingObjectStore = db.createObjectStore("bidding", { keyPath: "bidId" });
@@ -55,8 +54,9 @@ function openDatabase() {
 
 document.addEventListener("DOMContentLoaded", () => {
     openDatabase()
-    .then(() => {
-        console.log("Database opened successfully");
+    .then((instance) => {
+       db = instance;
+       console.log("Database opened successfully");
     })
     .catch((error) => {
         console.error(error);
@@ -69,6 +69,10 @@ function hashPassword(password) {
 
 function getUser(username) {
     return new Promise((resolve, reject) => {
+        if (!db) {
+            reject("Database is not initialized");
+            return;
+        }
         const transaction = db.transaction(["users"], "readonly");
         const userObjectStore = transaction.objectStore("users");
         const request = userObjectStore.get(username);
@@ -85,6 +89,10 @@ function getUser(username) {
 
 function createUser(firstName, lastName, username, password, email, userRole, city, adharNumber) {
     return new Promise((resolve, reject) => {
+        if (!db) {
+            reject("Database is not initialized");
+            return;
+        }
         const transaction = db.transaction(["users"], "readwrite");
         const userObjectStore = transaction.objectStore("users");
         const hashedPassword = hashPassword(password);
@@ -140,6 +148,10 @@ function createUser(firstName, lastName, username, password, email, userRole, ci
 
 function loginUser(username, password) {
     return new Promise(async (resolve, reject) => {
+        if (!db) {
+            reject("Database is not initialized");
+            return;
+        }
         const dbUser = await getUser(username);
         if (!dbUser) {
             reject("User does not exist");
@@ -157,9 +169,12 @@ function loginUser(username, password) {
     });
 }
 
-
-function addCar(carName,ownerUsername,carType, owner, carModel, category, location, carPrice, mileage, images){
+function addCar(carName, ownerUsername, carType, owner, carModel, category, location, carPrice, mileage, images) {
     return new Promise(async (resolve, reject) => {
+        if (!db) {
+            reject("Database is not initialized");
+            return;
+        }
         const transaction = db.transaction(["cars"], "readwrite");
         const carObjectStore = transaction.objectStore("cars");
         const car = {
@@ -188,8 +203,50 @@ function addCar(carName,ownerUsername,carType, owner, carModel, category, locati
     });
 }
 
+function getAllApprovals() {
+    return new Promise(async(resolve, reject) => {
+        if (!db) {
+            db = await openDatabase();
+            
+        }
+        const transaction = db.transaction(["cars"], "readonly");
+        const carObjectStore = transaction.objectStore("cars");
+        const index = carObjectStore.index("carIDIndex");
+        const request = index.getAll();
+        request.onsuccess = (event) => {
+            const cars = event.target.result;
+            const approvals = cars.filter((car) => !car.isApproved);
+            resolve(approvals);
+        };
+        request.onerror = (event) => {
+            reject("Error getting approvals");
+        };
+    });
+}
 
 
+function approveCars(carID){
+    return new Promise(async(resolve, reject) =>{
+      if(!db){
+        db = await openDatabase();
+      }
+        const transaction = db.transaction(["cars"], "readwrite");
+        const carObjectStore = transaction.objectStore("cars");
+        const request = carObjectStore.get(carID);
+        request.onsuccess = (event) => {
+            const car = event.target.result;
+            car.isApproved = true;
+            const updateRequest = carObjectStore.put(car);
+            updateRequest.onsuccess = (event) => {
+                resolve("Car approved successfully");
+            };
+            updateRequest.onerror = (event) => {
+                reject("Error approving car");
+            };
+        };
+    });
+
+}
 
 
-export { createUser, loginUser, addCar };
+export { createUser, loginUser, addCar, getAllApprovals, approveCars };

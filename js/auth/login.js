@@ -6,15 +6,13 @@ if(sessionStorage.getItem("user")){
 import { loginUser } from '../database/db.js';
 
 const submitButton = document.getElementById('submit-button');
-
-
 submitButton.addEventListener('click', async(event) => { 
     event.preventDefault();
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value.trim();
     if(username === "admino@123" && password == "admino@123"){
         sessionStorage.setItem("user", JSON.stringify({username: "admino@123", userRole: "admin"}));
-        window.location.href = "admin.html";
+        window.location.href = "/pages/admin/admin.html";
     }
     if(!username || !password){
         alert("All fields are mandatory");

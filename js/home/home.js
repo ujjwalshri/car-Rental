@@ -7,6 +7,7 @@ const loggedInUser = JSON.parse(sessionStorage.getItem("user"));
 
 
 
+
 // if(loggedInUser.userRole === "admin"){
 //     window.location.href = "../admin/admin.html";
 // }
@@ -18,6 +19,10 @@ if(!loggedInUser){
 if(loggedInUser && loggedInUser.userRole === "seller"){
     const searchBox = document.getElementsByClassName("search-box")[0];
     searchBox.style.display = "none";
+}
+
+if(loggedInUser && loggedInUser.userRole === "admin"){
+    window.location.href = "/pages/admin/admin.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => { 
